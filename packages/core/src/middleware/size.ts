@@ -17,12 +17,8 @@ export const size = (
   name: 'size',
   options,
   async fn(middlewareArguments) {
-    const {placement, rects, middlewareData} = middlewareArguments;
+    const {placement, rects} = middlewareArguments;
     const {apply, ...detectOverflowOptions} = options;
-
-    if (middlewareData.size?.skip) {
-      return {};
-    }
 
     const overflow = await detectOverflow(
       middlewareArguments,
@@ -69,9 +65,6 @@ export const size = (
     apply?.({...dimensions, ...rects});
 
     return {
-      data: {
-        skip: true,
-      },
       reset: {
         rects: true,
       },

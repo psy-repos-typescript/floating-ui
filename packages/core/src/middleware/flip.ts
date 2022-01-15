@@ -25,10 +25,6 @@ export const flip = (
     const {placement, middlewareData, rects, initialPlacement} =
       middlewareArguments;
 
-    if (middlewareData.flip?.skip) {
-      return {};
-    }
-
     const {
       mainAxis: checkMainAxis = true,
       crossAxis: checkCrossAxis = true,
@@ -82,6 +78,7 @@ export const flip = (
           },
           reset: {
             placement: nextPlacement,
+            skip: false,
           },
         };
       }
@@ -112,9 +109,6 @@ export const flip = (
       }
 
       return {
-        data: {
-          skip: true,
-        },
         reset: {
           placement: resetPlacement,
         },

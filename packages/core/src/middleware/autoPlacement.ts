@@ -62,10 +62,6 @@ export const autoPlacement = (
       ...detectOverflowOptions
     } = options;
 
-    if (middlewareData.autoPlacement?.skip) {
-      return {};
-    }
-
     const placements = getPlacementList(
       alignment,
       autoAlignment,
@@ -88,6 +84,7 @@ export const autoPlacement = (
         y,
         reset: {
           placement: placements[0],
+          skip: false,
         },
       };
     }
@@ -114,6 +111,7 @@ export const autoPlacement = (
         },
         reset: {
           placement: nextPlacement,
+          skip: false,
         },
       };
     }
@@ -126,9 +124,6 @@ export const autoPlacement = (
     )?.placement;
 
     return {
-      data: {
-        skip: true,
-      },
       reset: {
         placement:
           placementThatFitsOnAllSides ??

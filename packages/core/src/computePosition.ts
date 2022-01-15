@@ -40,11 +40,10 @@ export const computePosition: ComputePosition = async (
   }
 
   let rects = await platform.getElementRects({reference, floating, strategy});
-
   let {x, y} = computeCoordsFromPlacement({...rects, placement});
-
   let statefulPlacement = placement;
   let middlewareData = {};
+  let skippedMiddlewareName: string | null = null;
 
   let _debug_loop_count_ = 0;
   for (let i = 0; i < middleware.length; i++) {
@@ -62,6 +61,11 @@ export const computePosition: ComputePosition = async (
     }
 
     const {name, fn} = middleware[i];
+
+    if (name === skippedMiddlewareName) {
+      continue;
+    }
+
     const {
       x: nextX,
       y: nextY,
@@ -86,6 +90,10 @@ export const computePosition: ComputePosition = async (
 
     if (reset) {
       if (typeof reset === 'object') {
+        if (reset.skip !== false) {
+          skippedMiddlewareName = name;
+        }
+
         if (reset.placement) {
           statefulPlacement = reset.placement;
         }
