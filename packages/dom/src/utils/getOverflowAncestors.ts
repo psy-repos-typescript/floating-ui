@@ -7,7 +7,7 @@ export function getOverflowAncestors(
   node: Node,
   list: Array<Element | Window> = []
 ): Array<Element | Window | VisualViewport> {
-  const scrollableAncestor = getNearestOverflowAncestor(node);
+  const scrollableAncestor = getNearestOverflowAncestor(getParentNode(node));
   const isBody = scrollableAncestor === node.ownerDocument?.body;
   const win = getWindow(scrollableAncestor);
   const target = isBody
