@@ -53,11 +53,9 @@ export function convertValueToCoords(
     ? {mainAxis: rawValue, crossAxis: 0, alignmentOffset: 0}
     : {mainAxis: 0, crossAxis: 0, alignmentOffset: 0, ...rawValue};
 
-  crossAxis = alignment
-    ? alignment === 'end'
-      ? alignmentOffset * -1
-      : alignmentOffset
-    : crossAxis;
+  if (alignment) {
+    crossAxis = alignment === 'end' ? alignmentOffset * -1 : alignmentOffset;
+  }
 
   return isVertical
     ? {x: crossAxis * crossAxisMulti, y: mainAxis * mainAxisMulti}
