@@ -53,7 +53,7 @@ export function convertValueToCoords(
     ? {mainAxis: rawValue, crossAxis: 0, alignmentOffset: 0}
     : {mainAxis: 0, crossAxis: 0, alignmentOffset: 0, ...rawValue};
 
-  if (alignment) {
+  if (alignment && alignmentOffset) {
     crossAxis = alignment === 'end' ? alignmentOffset * -1 : alignmentOffset;
   }
 
