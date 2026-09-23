@@ -238,6 +238,12 @@ export const MINI_SPONSORS = [
     MemberId: 873235,
   },
   {
+    logo: '/sponsors/sealed-rose.svg',
+    label: 'Sealed Rose - AI Deepfake Detector',
+    url: 'https://sealedrose.com/verify-video',
+    MemberId: 882753,
+  },
+  {
     // Sponsored below the Mini Sponsor tier amount, so it is listed manually
     // until this date rather than matched against the Open Collective tier.
     logo: '/sponsors/kea-home.svg',
